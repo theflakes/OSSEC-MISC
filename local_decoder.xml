@@ -1,0 +1,386 @@
+<decoder name="windows">
+  <type>windows</type>
+  <prematch>^WinEvtLog: |WinEvtLog: </prematch>
+</decoder>
+
+<decoder name="windows-date-format">
+  <prematch>^\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d </prematch>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_parent">^\.+: (\w+)\((\d+)\): (\.+): </regex>
+  <regex>(\.+): \.+: (\S+): </regex>
+  <order>status, id, extra_data, user, system_name</order>
+  <fts>name, location, user, system_name</fts>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Pre-authentication failed\p\s*\t*\s*User Name:\s+(\S+) </regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Account Name:\s+(\S+) \.+SAM Account Name|Account Name:\s+(\S+) \.+Member:\.+Account Name|Account Name:\.+Account Name:\s+(\S+)</regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Target Account Name:\s+(\S+) \.+Target Account ID\p </regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Account Name:\s+(\S+) \.+Account Domain\p </regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Account Name:\s+(\S+)\s+Service Information\p </regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Account Name:\s+(\S+) \.+Group Name\p </regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Account Name:\s+(\S+)\s+Supplied Realm Name\p </regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">TaskScheduler/Operational:\.+User \p\S*\\*(\S+)\p </regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">A privileged service was called. \.+Account Name:\s+(\S+) </regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Source Network Address: ::ffff:(\S+)|Source Network Address: (\S+)</regex>
+  <order>srcip</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Client Address: ::ffff:(\S+)|Client Address:\s+(\S+)</regex>
+  <order>srcip</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Source IP Address: ::ffff:(\S+)|Source IP Address: (\S+)</regex>
+  <order>srcip</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">User Name\p\s*\t*(\S+)\s*\t*Domain\p</regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">User Name\p\s*\t*\s*(\S+)@\.+\s*\t*User Domain\p|User Name\p\s*\t*\s*(\S+)\s*\t*User Domain\p</regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">for user \p(\S+)\p</regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">A logon was attempted using explicit credentials\.+Account Name:\.+Account name:\s+(\S+)</regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">An account was successfully logged on\.+Account Name:\.+Account name:\s+(\S+)</regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">A user account was changed.\.+Account Name:\s+(\S+) \.+Account Name:\s+(\S+) </regex>
+  <order>url, dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">A user account was disabled.\.+Account Name:\s+(\S+) \.+Account Name:\s+(\S+) </regex>
+  <order>url, dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">A user account was unlocked.\.+Account Name:\s+(\S+) \.+Account Name:\s+(\S+) </regex>
+  <order>url, dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">A user account was enabled.\.+Account Name:\s+(\S+) \.+Account Name:\s+(\S+) </regex>
+  <order>url, dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">An account failed to log on.\.+Account Name:\.+Account Name:\s+(\S+) </regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Account currently disabled\.+User Name:\s+(\S+)\s+\.+Domain: </regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Logon attempt by:\.+Logon account:\s+(\S+) </regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">Logon Account:\s+(\S+) Source Workstation</regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="windows_default">
+  <type>windows</type>
+  <parent>windows</parent>
+  <regex offset="after_regex">CLIENT: (\d+.\d+.\d+.\d+)</regex>
+  <order>srcip</order>
+</decoder>
+
+<decoder name="web-accesslog-iis7">
+  <parent>windows-date-format</parent>
+  <type>web-log</type>
+  <regex offset="after_parent">^(\d+.\d+.\d+.\d+) (\w+) (\S+ \S+) (\d+) \.+\\(\S+) (\d+.\d+.\d+.\d+) \.+ (\d+) \d+ \d+ \d+$|^(\d+.\d+.\d+.\d+) (\w+) (\S+ \S+) (\d+) (\S+)@\.+ (\d+.\d+.\d+.\d+) \.+ (\d+) \d+ \d+ \d+$|^(\d+.\d+.\d+.\d+) (\w+) (\S+ \S+) (\d+) (\S+) (\d+.\d+.\d+.\d+) \.+ (\d+) \d+ \d+ \d+$</regex>
+  <order>dstip, action, url, dstport, dstuser, srcip, status</order>
+</decoder>
+
+<!--
+        WARNING!!!
+        Do not remove "|" from the end of the PIX amd ASA prematches.
+        You will break things if you do!
+-->
+<decoder name="pix">
+  <prematch>^%PIX-|^\w\w\w \d\d \d\d\d\d \d\d:\d\d:\d\d: %PIX-|</prematch>
+  <prematch>^%ASA-|^\w\w\w \d\d \d\d\d\d \d\d:\d\d:\d\d: %ASA-|</prematch>
+  <prematch>^%FWSM-|^\w\w\w \d\d \d\d\d\d \d\d:\d\d:\d\d: %FWSM-</prematch>
+</decoder>
+
+<decoder name="pix_aaa">
+  <parent>pix</parent>
+  <prematch offset="after_parent">^6-113005:</prematch>
+  <regex>ASA-(\S+):\.+server\s+=\s+(\S+) \.+user\s+=\s+(\S+)</regex>
+  <order>id, srcip, user</order>
+</decoder>
+
+<decoder name="pix_vpn_ipsec_logs">
+  <parent>pix</parent>
+  <prematch offset="after_parent">^3-713167:|^6-713228:</prematch>
+  <regex>ASA-(\S+):\.+Username\s+=\.+\\(\S+),\.+IP\s+=\s+(\S+),|ASA-(\S+):\.+Username\s+=\s+(\S+)@\.+,\.+IP\s+=\s+(\S+),|ASA-(\S+):\.+Username\s+=\s+(\S+),\.+IP\s+=\s+(\S+),</regex>
+  <order>id, user, srcip</order>
+</decoder>
+
+<decoder name="pix_anyconnect_logs">
+  <parent>pix</parent>
+  <prematch offset="after_parent">^4-722051:|^6-716039</prematch>
+  <regex>ASA-(\S+):\.+User\s+\p(\S+)@\w+.\w+.\w+\p\s+IP\s+\p(\d+.\d+.\d+.\d+)\p|ASA-(\S+):\.+User\s+\p(\S+)@\w+.\w+\p\s+IP\s+\p(\d+.\d+.\d+.\d+)\p|ASA-(\S+):\.+User\s+\p\.+\\(\S+)\p\s+IP\s+\p(\d+.\d+.\d+.\d+)\p|ASA-(\S+):\.+User\s+\p(\S+)\p\s+IP\s+\p(\d+.\d+.\d+.\d+)\p</regex>
+  <order>id, user, srcip</order>
+</decoder>
+
+<decoder name="pix_acl_deny1">
+  <parent>pix</parent>
+  <prematch offset="after_parent">^1-106100:</prematch>
+  <regex>ASA-(\S+):\.+ (\.\.\.) \.+/(\S+)\((\d+)\)\.+/(\S+)\((\d+)\)</regex>
+  <order>id, protocol, srcip, srcport, dstip, dstport</order>
+</decoder>
+
+<decoder name="pix_acl_deny2">
+  <parent>pix</parent>
+  <prematch offset="after_parent">^2-106001:</prematch>
+  <regex>ASA-(\S+):\.+ (\.\.\.) \.+denied from (\S+)/(\d+) to (\S+)/(\d+)\s</regex>
+  <order>id, protocol, srcip, srcport, dstip, dstport</order>
+</decoder>
+
+<decoder name="pix_acl_deny3">
+  <parent>pix</parent>
+  <prematch offset="after_parent">^4-106023:</prematch>
+  <regex>ASA-(\S+): Deny (\.\.\.)\.*:(\S+)/(\d+) \.+:\.*(\d+.\d+.\d+.\d\d\d)\.*/(\d+)|ASA-(\S+): Deny (\.\.\.)\.*:(\S+)/(\d+) \.+:\.*(\d+.\d+.\d+.\d\d)\.*/(\d+)|ASA-(\S+): Deny (\.\.\.)\.*:(\S+)/(\d+) \.+:\.*(\d+.\d+.\d+.\d)\.*/(\d+)</regex>
+  <order>id, protocol, srcip, srcport, dstip, dstport</order>
+</decoder>
+
+<decoder name="pix_teardown">
+  <parent>pix</parent>
+  <prematch offset="after_parent">^6-302014:|^6-302016:</prematch>
+  <regex>ASA-(\S+): Teardown (\.\.\.) \.+:\.*(\d+.\d+.\d+.\d+)\.*/(\d+) \.+:\.*(\d+.\d+.\d+.\d+)/(\d+)|ASA-(\S+): Teardown (\.\.\.) \.+:\.*(\d+.\d+.\d+.\d+)\.*/(\d+) \.+:\.*(\d+.\d+.\d+.\d\d\d)\.+/(\d+)|ASA-(\S+): Teardown (\.\.\.) \.+:\.*(\d+.\d+.\d+.\d+)\.*/(\d+) \.+:\.*(\d+.\d+.\d+.\d\d)\.+/(\d+)|ASA-(\S+): Teardown (\.\.\.) \.+:\.*(\d+.\d+.\d+.\d+)\.*/(\d+) \.+:\.*(\d+.\d+.\d+.\d)\.+/(\d+)</regex>
+  <order>id, protocol, srcip, srcport, dstip, dstport</order>
+</decoder>
+
+<decoder name="pix_botnet">
+  <parent>pix</parent>
+  <prematch offset="after_parent">^4-338002</prematch>
+  <regex>ASA-(\S+):\.+ (\.\.\.) traffic \.+:(\d+.\d+.\d+.\d+)/(\d+) \.+:(\d+.\d+.\d+.\d+)/(\d+)|ASA-(\S+):\.+ (\.\.\.) \.*(\d+.\d+.\d+.\d+)\.*/(\d+) \.+:(\d+.\d+.\d+.\d+)/(\d+)</regex>
+  <order>id, protocol, srcip, srcport, dstip, dstport</order>
+</decoder>
+
+<decoder name="pix_arp_collision">
+  <parent>pix</parent>
+  <prematch offset="after_parent">^4-405001:</prematch>
+  <regex>ASA-(\S+): \.+collision from (\d+.\d+.\d+.\d+)/\.+(\d+.\d+.\d+.\d+)</regex>
+  <order>id, dstip, srcip</order>
+</decoder>
+
+<decoder name="pix_logins">
+  <parent>pix</parent>
+  <prematch offset="after_parent">^6-605004:|^6-605005:</prematch>
+  <regex offset="after_parent">^(\S+): Login\.+(\d+.\d+.\d+.\d+)\.+(\d+.\d+.\d+.\d+)</regex>
+  <order>id, srcip, dstip</order>
+</decoder>
+
+<decoder name="pix_logins2">
+  <parent>pix</parent>
+  <prematch offset="after_parent">^6-315011:</prematch>
+  <regex offset="after_parent">^(\S+): \.+ from (\d+.\d+.\d+.\d+) \.+user \.+\\(\S+)\p|^(\S+): \.+ from (\d+.\d+.\d+.\d+) \.+user \p(\S+)@|^(\S+): \.+ from (\d+.\d+.\d+.\d+) \.+user \p(\S+)\p</regex>
+  <order>id, srcip, dstuser</order>
+</decoder>
+
+<decoder name="duo_auth">
+  <prematch>authentication\|authentication</prematch>
+  <regex offset="after_prematch">duser=(\w+) \.+src=(\d+.\d+.\d+.\d+)</regex>
+  <order>user, srcip</order>
+</decoder>
+
+<decoder name="duo_admin">
+  <prematch>administrator\|admin_login</prematch>
+  <regex offset="after_prematch">ip_address\p+\s+\p(\d+.\d+.\d+.\d+)\p</regex>
+  <order>srcip</order>
+</decoder>
+
+<decoder name="duo_admin_user_update">
+  <prematch>administrator\|user_update</prematch>
+  <regex offset="after_prematch">description=\p\p(\S+)\p+\s+\p(\.+)\p</regex>
+  <order>extra_data, status</order>
+</decoder>
+
+<decoder name="passwordstate_auth">
+  <prematch>Passwordstate:\.+login</prematch>
+  <regex offset="after_prematch">\.+UserID\s\p\w+\\(\w+)\p\sfrom\.+IP\sAddress\s\p(\d+.\d+.\d+.\d+)\p\p</regex>
+  <order>user, srcip</order>
+</decoder>
+
+<decoder name="passwordstate_activity">
+  <prematch>Passwordstate:\s\w+\s\w+\s\(</prematch>
+  <regex offset="after_prematch">\w+\\(\w+)\)\.+\(Title\s\p\s\.+Client\sIP\sAddress\s\p\s(\d+.\d+.\d+.\d+)</regex>
+  <order>user, srcip</order>
+</decoder>
+
+<decoder name="sepm_virus_found">
+  <program_name>drtexw97</program_name>
+  <prematch>Virus found,IP Address:</prematch>
+  <regex offset="after_prematch">(\d+.\d+.\d+.\d+)</regex>
+  <order>srcip</order>
+</decoder>
+
+<decoder name="sepm_web_attack">
+  <program_name>drtexw97</program_name>
+  <prematch>Web Attack:</prematch>
+  <regex offset="after_prematch">Local: (\d+.\d+.\d+.\d+)\p\.+Remote: (\d+.\d+.\d+.\d+)</regex>
+  <order>srcip, dstip</order>
+</decoder>
+
+<decoder name="sepm_not_blocked">
+  <program_name>drtexw97</program_name>
+  <prematch>not blocked.</prematch>
+  <regex offset="after_prematch">Local: (\d+.\d+.\d+.\d+)\p\.+Remote: (\d+.\d+.\d+.\d+)\.+User: (\S+)\p</regex>
+  <order>srcip, dstip, user</order>
+</decoder>
+
+<decoder name="sepm_blocked">
+  <program_name>drtexw97</program_name>
+  <prematch>attack blocked.</prematch>
+  <regex offset="after_prematch">Local: (\d+.\d+.\d+.\d+)\p\.+Remote: (\d+.\d+.\d+.\d+)</regex>
+  <order>srcip, dstip</order>
+</decoder>
+
+<decoder name="mbytes">
+  <prematch>MALWAREBYTES ClientSecurityLog </prematch>
+</decoder>
+
+<decoder name="mbytes_detection">
+  <parent>mbytes</parent>
+  <prematch offset="after_parent">DETECTION</prematch>
+  <regex offset="after_parent">IPAddress\.(\d+.\d+.\d+.\d+);\.+LogonUser\.(\S*);</regex>
+  <order>srcip,user</order>
+</decoder>
+
+<decoder name="mbytes_ipblock">
+  <parent>mbytes</parent>
+  <prematch offset="after_parent">IPBLOCK</prematch>
+  <regex offset="after_parent">IPAddress\.(\d+.\d+.\d+.\d+);\.+ObjectScanned\.(\d+.\d+.\d+.\d+);\.+LogonUser\.(\w*)</regex>
+  <order>srcip, dstip, user</order>
+</decoder>
+
+<decoder name="rproxy">
+  <prematch>W3ReverseProxy,</prematch>
+</decoder>
+
+<decoder name="reverseproxy">
+  <parent>rproxy</parent>
+  <regex>(\d+.\d+.\d+.\d+), (\w+), (\.+),\.+,\.+,\.+, W3ReverseProxy,\.+,\.+,\.+, (\d+.\d+.\d+.\d+),\.+,\.+,\.+,\.+,\.+,\.+, (\w+), (\.+),\.+,\.+, (\d+),</regex>
+  <order>srcip, user, extra_data, dstip, action, url, status</order>
+</decoder>
+
+<decoder name="reverseproxy">
+  <parent>rproxy</parent>
+  <regex>User=(\.+)&</regex>
+  <order>user</order>
+</decoder>
