@@ -126,6 +126,7 @@ def main():
         restore_files()
     else:
         call('/var/ossec/bin/ossec-makelists')
+        # restart OSSEC server processes?
        # call(['/etc/init.d/ossec-hids-server', 'restart'])
 
 
