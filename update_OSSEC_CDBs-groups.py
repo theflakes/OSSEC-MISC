@@ -12,7 +12,7 @@
     username = cn=username,ou=users,dc=contoso,dc=com
     password = XXXXXXXX
     base_dn = cn=Domain Admins,cn=users,dc=contoso,dc=com
-    file = /user/group_name.txt
+    file = /var/ossec/rules/group_name.txt
 '''
 
 import os
