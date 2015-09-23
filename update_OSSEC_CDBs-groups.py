@@ -2,7 +2,7 @@
 '''
     Author: Brian Kellogg
 
-    Pull all AD group members out of AD groups to build CDBs in OSSEC for rule use.
+    Pull all AD group members out of specified AD groups to build CDBs in OSSEC for rule use.
 
     /user/update_OSSEC_CDBs-groups.ini file read for information to pull group members from specified group in specified domain
     INI file section configuration
