@@ -4,7 +4,6 @@
 
     Updates CDB files from any AD domain's AD LDAP where possible for OU membership.
 
-
     /user/update_OSSEC_CDBs-OUs.ini file read for information to pull OU members from specified OU in specified domain
     INI file section configuration
     ===========================================
