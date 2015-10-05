@@ -6,8 +6,9 @@
 
     /user/update_OSSEC_CDBs-OUs.ini file read for information to pull OU members from specified OU in specified domain
     INI file section configuration
+    # username =  account used to bind to AD LDAP
     ===========================================
-    [CONTOSO]
+    [CONTOSO-Accounts]
     uri = ldap://10.0.0.1
     username = cn=User,ou=users,dc=contoso,dc=com
     password = XXXXXXXX
@@ -15,6 +16,15 @@
     search_filter = (objectClass=user)
     search_attribute = sAMAccountName
     file = /var/ossec/rules/accounts.txt
+
+    [CONTOSO-Service_Accounts]
+    uri = ldap://10.0.0.1
+    username = cn=User,ou=users,dc=contoso,dc=com
+    password = XXXXXXXX
+    base_dn = ou=service accounts,dc=contoso,dc=com
+    search_filter = (objectClass=user)
+    search_attribute = sAMAccountName
+    file = /var/ossec/rules/service_accounts.txt
 '''
 
 import os
