@@ -6,6 +6,8 @@
 
     /user/update_OSSEC_CDBs-groups.ini file read for information to pull group members from specified group in specified domain
     INI file section configuration
+    # username - account used to bind to AD LDAP
+    # You can specify multiple []'s, they just need to have unique names ([CONTOSO-DAs], [CONTOSO-IT], ...)
     ===========================================
     [CONTOSO]
     uri = ldap://10.0.0.1:3268
